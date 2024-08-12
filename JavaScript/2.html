@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    console.log('Screen size = ' + screen.width + ' x ' + screen.height)
+    console.log(
+      navigator.appName,
+      navigator.appVersion,
+      navigator.language,
+      navigator.platform,
+      navigator.userAgent
+    )
+    class Animal {
+      constructor(params1, params2, ...rest) {
+        // 然后为了让内部调用到获取到的参数
+        // 把a定义成叫声吧
+        this.a = params1
+        this.b = params2
+      }
+      // 写一个方法
+      bark() {
+        console.log(`叫声${this.a}`)
+      }
+    }
+    let dog = new Animal('WANG', 2)
+    dog.bark()
+  </script>
+</html>

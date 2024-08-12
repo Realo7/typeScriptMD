@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 示例 1：创建一个以空对象为原型的新对象
+    let obj1 = Object.create(null)
+    console.log(obj1)
+
+    // 示例 2：指定原型并定义自身属性
+    let proto = {
+      method: function () {
+        console.log('This is a method from the prototype.')
+      },
+    }
+
+    let obj2 = Object.create(proto, {
+      ownProperty: {
+        value: 'This is an own property.',
+        writable: true,
+        enumerable: true,
+        configurable: true,
+      },
+    })
+
+    obj2.method()
+    console.log(obj2.ownProperty)
+  </script>
+</html>
