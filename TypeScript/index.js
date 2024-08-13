@@ -1,67 +1,29 @@
-// interface 用来定义接口
-// class用来定义类
-// implements用来实现interface功能
-// extends用来继承class
-class Dom1 {
-    creatElement(el) {
-        return document.createElement(el);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+const Base = (target) => {
+    console.log(target); //
+    target.prototype.stop = () => {
+        console.log('111');
+    };
+};
+let HTTP = class HTTP {
+    constructor() {
+        console.log('初始化构造器');
     }
-    setText(el, text) {
-        el.textContent = text;
+    run() {
+        console.log('http');
     }
-    render(data) {
-        let root = this.creatElement(data.tag);
-        if (data.children && Array.isArray(data.children)) {
-            data.children.forEach((item, index) => {
-                var _a;
-                console.log(item, index);
-                let child = this.render(item);
-                this.setText(child, (_a = item.text) !== null && _a !== void 0 ? _a : null);
-                root.appendChild(child); //star
-            });
-        }
-        else {
-            this.setText(root, data.text);
-        }
-        console.log('返回的root', root);
-        return root;
-    }
-}
-class Vue1 extends Dom1 {
-    constructor(options) {
-        super();
-        this.options = options;
-        this.init();
-    }
-    init() {
-        let data = {
-            tag: 'div',
-            text: '我是根节点',
-            children: [
-                {
-                    tag: 'div',
-                    text: '我是子节点1',
-                    children: [
-                        { tag: 'div', text: '我是2子节点1', children: [] },
-                        { tag: 'div', text: '我是2子节点2', children: [] },
-                        { tag: 'div', text: '我是2子节点3', children: [] },
-                    ],
-                },
-                { tag: 'div', text: '我是子节点2', children: [] },
-            ],
-        };
-        let app = typeof this.options.el == 'string'
-            ? document.querySelector(this.options.el)
-            : this.options.el;
-        let add = this.render(data);
-        console.log(add);
-        app.appendChild(add);
-    }
-}
-new Vue1({ el: '#app' });
-// class vue1 extends Vue {
-//   a: Options = { el: '111' }
-//   constructor() {
-//     super(a)
-//   }
-// }
+};
+HTTP = __decorate([
+    Base,
+    __metadata("design:paramtypes", [])
+], HTTP);
+let a = new HTTP();
+a.stop();

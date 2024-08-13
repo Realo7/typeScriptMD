@@ -1,18 +1,20 @@
-let obj = {
-  name: '小满',
-  age: 25,
-  city: 'mumbai',
-  country: 'india',
+const Base: ClassDecorator = (target) => {
+  console.log(target) //
+  target.prototype.stop = () => {
+    console.log('111')
+  }
 }
-type Key = keyof typeof obj
-// type Key = 'name' | 'age' | 'city' | 'country'
-console.log(typeof obj)
-interface Data {
+
+@Base
+class HTTP {
+  constructor() {
+    console.log('初始化构造器')
+  }
   name: string
-  age: number
-  sex: string
+  run() {
+    console.log('http')
+  }
 }
-type Options1<T extends object> = {
-  readonly [K in keyof T]?: T[K]
-}
-type B1 = Options1<Data>
+
+let a: any = new HTTP()
+a.stop()
