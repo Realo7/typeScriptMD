@@ -1,29 +1,18 @@
-// import axios from 'axios'
-// import https from 'https'
-// import 'reflect-metadata'
-// const agent = new https.Agent({
-//   rejectUnauthorized: false,
-// })
-// // 忽略证书验证
-// axios.defaults.httpsAgent = agent
+// 结合题目实现
+// 实现一个函数支持任意类型
+// 如果是对象，就检查里面的属性，
+// 如果里面的属性是 number 就取两位，如果是 string 就去除左右空格
+// 如果是函数就执行
+const isObj = (data: any) => ({}.toString.call(data) === '[object Object]')
+// '[object Object]' 是 JavaScript 中通过 Object.prototype.toString.call() 方法获取对象类型时，对于普通对象的特定返回值。
 
-// let obj: any = { name: '小满zs' } //1
-// let aahph: any = obj //2
-// let wmap: WeakMap<object, string> = new WeakMap()
-// wmap.set(obj, '爱ss') //2 他的键是弱引用不会计数的
-// obj = null // -1
-// aahph = null //-1
-// //v8 GC 不稳定 最少200ms
-// setTimeout(() => {
-//   console.log(wmap) //无属性
-// }, 500)
-let obj: any = { name: '小满zs' } //1
-let aahph: any = obj //2
-let wset: WeakSet<Object> = new WeakSet()
-wset.add(obj) //2 他的键是弱引用不会计数的
-obj = null // -1
-aahph = null //-1
-//v8 GC 不稳定 最少200ms
-setTimeout(() => {
-  console.log(wset) //无属性
-}, 500)
+// 除了普通对象，其他数据类型会有不同的返回值，比如：
+// 数组：[object Array]
+// 函数：[object Function]
+// 日期：[object Date]
+const fn = (data: any) => {
+  // 是普通对象，不能用forin，forin会遍历原型上的属性
+  if (isObj(data)) {
+    Object.keys(data).forEach((key) => {})
+  }
+}
