@@ -132,9 +132,53 @@ target 参数传递的是整个 HTTP 类的定义，而不仅仅是构造函数�
 
 ### 属性装饰器
 
+不常用，用来定义属性
+先忽略
+
 ### 参数装饰器
 
+import 'reflect-metadata'
+
+<!-- 可以快速存储元数据然后在用到的地方取出来 defineMetadata getMetadata -->
+
+```ts
+const result = () => {
+  const fn: ParameterDecorator = (target, propertyKey, parameterIndex) => {
+    console.log(target, propertyKey, parameterIndex)
+    Reflect.defineMetadata('key', 'result', target)
+  }
+  return fn
+}
+// 自动处理接收到的参数getdata
+getmd(@result() getdata: any) {
+    console.log('getmd', getdata)
+  }
+
+```
+
 ### 方法装饰器
+
+```ts
+// 方法装饰器
+const GET = (url: string) => {
+  // 这里接的是个原型对象
+  const fn: MethodDecorator = (target, propertyKey, descriptor) => {
+    axios.get(url).then((res) => {
+      console.log(res.data)
+      descriptor.value = res.data
+    })
+  }
+  return fn
+}
+
+class HTTP {
+  // 处理完请求之后返回到下面getmd的参数里
+  @GET('http://api.apiopen.top/api/getDynamic?page=0&size=10')
+  getmd(getdata: any) {
+    console.log('getmd', getdata)
+  }
+}
+```
 
 ### 装饰器工厂
 

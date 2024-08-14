@@ -1,29 +1,28 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-const Base = (target) => {
-    console.log(target); //
-    target.prototype.stop = () => {
-        console.log('111');
-    };
-};
-let HTTP = class HTTP {
-    constructor() {
-        console.log('初始化构造器');
-    }
-    run() {
-        console.log('http');
-    }
-};
-HTTP = __decorate([
-    Base,
-    __metadata("design:paramtypes", [])
-], HTTP);
-let a = new HTTP();
-a.stop();
+// import axios from 'axios'
+// import https from 'https'
+// import 'reflect-metadata'
+// const agent = new https.Agent({
+//   rejectUnauthorized: false,
+// })
+// // 忽略证书验证
+// axios.defaults.httpsAgent = agent
+// let obj: any = { name: '小满zs' } //1
+// let aahph: any = obj //2
+// let wmap: WeakMap<object, string> = new WeakMap()
+// wmap.set(obj, '爱ss') //2 他的键是弱引用不会计数的
+// obj = null // -1
+// aahph = null //-1
+// //v8 GC 不稳定 最少200ms
+// setTimeout(() => {
+//   console.log(wmap) //无属性
+// }, 500)
+let obj = { name: '小满zs' }; //1
+let aahph = obj; //2
+let wset = new WeakSet();
+wset.add(obj); //2 他的键是弱引用不会计数的
+obj = null; // -1
+aahph = null; //-1
+//v8 GC 不稳定 最少200ms
+setTimeout(() => {
+    console.log(wset); //无属性
+}, 500);
