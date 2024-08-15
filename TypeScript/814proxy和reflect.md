@@ -19,7 +19,6 @@ Reflect.get(target, propertyKey, receiver)：获取对象的属性值。
 let obj = {
   name: 'Alice',
 }
-
 Reflect.get(obj, 'name') // 直接对原始的 obj 对象进行操作获取属性值
 ```
 

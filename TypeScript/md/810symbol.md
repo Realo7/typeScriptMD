@@ -46,6 +46,7 @@ console.log(JSON.stringify(obj1)) // {"age":19,"sex":"女"}
 ```
 
 如何拿到?
+getOwnPropertySymbols
 
 ```javascript
 // 1 拿到具体的symbol 属性,对象中有几个就会拿到几个
